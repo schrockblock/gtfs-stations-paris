@@ -1,0 +1,35 @@
+PODS:
+  - GTFSStationsParis (0.1.0)
+  - Nimble (3.2.0)
+  - Quick (0.9.2)
+  - SQLite.swift (0.10.1)
+  - SubwayStations (0.1.0)
+
+DEPENDENCIES:
+  - GTFSStationsParis (from `../`)
+  - Nimble (~> 3.0)
+  - Quick (~> 0.8)
+  - SQLite.swift (~> 0.10.1)
+  - SubwayStations (from `https://github.com/schrockblock/subway-stations`)
+
+EXTERNAL SOURCES:
+  GTFSStationsParis:
+    :path: "../"
+  SubwayStations:
+    :git: https://github.com/schrockblock/subway-stations
+
+CHECKOUT OPTIONS:
+  SubwayStations:
+    :commit: 0b05e317ef42e2f993473b3f4c9904c23aed2339
+    :git: https://github.com/schrockblock/subway-stations
+
+SPEC CHECKSUMS:
+  GTFSStationsParis: 2311190a131da2aca8911da574200efd8b81ff52
+  Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
+  Quick: 18d057bc66451eedd5d1c8dc99ba2a5db6e60226
+  SQLite.swift: 6a6e4b034efc317ce4e203b6af2d3024fee2b570
+  SubwayStations: e119c62429dc58b95345ecd3d1d02b1f2f5ed545
+
+PODFILE CHECKSUM: 61ef75d1f741f154ed3bb021032e177e0ba21515
+
+COCOAPODS: 1.0.0.beta.2

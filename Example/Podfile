@@ -1,0 +1,14 @@
+use_frameworks!
+
+target 'GTFSStationsParis_Example' do
+  pod 'GTFSStationsParis', :path => '../'
+  pod 'SubwayStations', git: 'https://github.com/schrockblock/subway-stations'
+  pod 'SQLite.swift', '~> 0.10.1'
+
+  target 'GTFSStationsParis_Tests' do
+    inherit! :search_paths
+
+    pod 'Quick', '~> 0.8'
+    pod 'Nimble', '~> 3.0'
+  end
+end
