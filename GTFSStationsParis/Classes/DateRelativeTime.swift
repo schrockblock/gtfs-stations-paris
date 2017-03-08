@@ -8,65 +8,65 @@
 
 import UIKit
 
-extension NSDate {
-    public func isBefore(date: NSDate) -> Bool {
-        return self.compare(date) == .OrderedAscending
+extension Date {
+    public func isBefore(_ date: Date) -> Bool {
+        return self.compare(date) == .orderedAscending
     }
     
-    public func isAfter(date: NSDate) -> Bool {
-        return self.compare(date) == .OrderedDescending
+    public func isAfter(_ date: Date) -> Bool {
+        return self.compare(date) == .orderedDescending
     }
     
-    public func increment(unit: NSCalendarUnit, amount: Int) -> NSDate? {
-        let calendar = NSCalendar.autoupdatingCurrentCalendar()
-        calendar.locale = NSLocale(localeIdentifier: "en-US")
+    public func increment(_ unit: NSCalendar.Unit, amount: Int) -> Date? {
+        var calendar = Calendar.autoupdatingCurrent
+        calendar.locale = Locale(identifier: "en-US")
         
-        let components = NSDateComponents()
+        var components = DateComponents()
         
         switch unit {
-        case NSCalendarUnit.Year:
+        case NSCalendar.Unit.year:
             components.year = amount
             break
-        case NSCalendarUnit.WeekOfYear:
+        case NSCalendar.Unit.weekOfYear:
             components.weekOfYear = amount
             break
-        case NSCalendarUnit.Month:
+        case NSCalendar.Unit.month:
             components.month = amount
             break
-        case NSCalendarUnit.Day:
+        case NSCalendar.Unit.day:
             components.day = amount
             break
-        case NSCalendarUnit.Hour:
+        case NSCalendar.Unit.hour:
             components.hour = amount
             break
-        case NSCalendarUnit.Minute:
+        case NSCalendar.Unit.minute:
             components.minute = amount
             break
-        case NSCalendarUnit.Second:
+        case NSCalendar.Unit.second:
             components.second = amount
             break
-        case NSCalendarUnit.Era:
+        case NSCalendar.Unit.era:
             components.era = amount
             break
-        case NSCalendarUnit.Quarter:
+        case NSCalendar.Unit.quarter:
             components.quarter = amount
             break
-        case NSCalendarUnit.WeekdayOrdinal:
+        case NSCalendar.Unit.weekdayOrdinal:
             components.weekdayOrdinal = amount
             break
-        case NSCalendarUnit.YearForWeekOfYear:
+        case NSCalendar.Unit.yearForWeekOfYear:
             components.yearForWeekOfYear = amount
             break
-        case NSCalendarUnit.Weekday:
+        case NSCalendar.Unit.weekday:
             components.weekday = amount
             break
-        case NSCalendarUnit.WeekOfMonth:
+        case NSCalendar.Unit.weekOfMonth:
             components.weekOfMonth = amount
             break
         default:
             break
         }
         
-        return calendar.dateByAddingComponents(components, toDate: self, options: NSCalendarOptions(rawValue: 0))
+        return (calendar as NSCalendar).date(byAdding: components, to: self, options: NSCalendar.Options(rawValue: 0))
     }
 }

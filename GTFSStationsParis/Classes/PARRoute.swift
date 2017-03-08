@@ -9,10 +9,10 @@
 import UIKit
 import SubwayStations
 
-public class PARRoute: Route {
-    public var color: UIColor!
-    public var objectId: String!
-    public var routeIds: Array<String> = Array<String>()
+open class PARRoute: Route {
+    open var color: UIColor!
+    open var objectId: String!
+    open var routeIds: Array<String> = Array<String>()
     
     public init(objectId: String!) {
         self.objectId = objectId

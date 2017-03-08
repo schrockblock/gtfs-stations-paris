@@ -9,9 +9,9 @@
 import UIKit
 import SubwayStations
 
-public class PARStation: Station {
-    public var name: String!
-    public var stops: Array<Stop> = Array<Stop>()
+open class PARStation: Station {
+    open var name: String!
+    open var stops: Array<Stop> = Array<Stop>()
     
     public init(name: String!) {
         self.name = name

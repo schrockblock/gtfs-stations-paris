@@ -10,15 +10,15 @@ import UIKit
 import SQLite
 import SubwayStations
 
-public class PARStationManager: NSObject, StationManager {
-    public var sourceFilePath: String?
+open class PARStationManager: NSObject, StationManager {
+    open var sourceFilePath: String?
     lazy var dbManager: DBManager = {
         let lazyManager = DBManager(sourcePath: self.sourceFilePath)
         return lazyManager
     }()
-    public var allStations: Array<Station> = Array<Station>()
-    public var routes: Array<Route> = Array<Route>()
-    public var timeLimitForPredictions: Int32 = 20
+    open var allStations: Array<Station> = Array<Station>()
+    open var routes: Array<Route> = Array<Route>()
+    open var timeLimitForPredictions: Int32 = 20
     
     public init(sourceFilePath: String?) throws {
         super.init()
@@ -36,9 +36,9 @@ public class PARStationManager: NSObject, StationManager {
                     let station = PARStation(name: stop.name)
                     station.stops.append(stop)
                     stationIds.append(stop.name)
-                    var stationName = station.name.stringByReplacingOccurrencesOfString("d'", withString: "", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
-                    stationName = stationName.stringByReplacingOccurrencesOfString("l'", withString: "", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
-                    let stationNameArray = stationName.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                    var stationName = station.name.replacingOccurrences(of: "d'", with: "", options: NSString.CompareOptions.caseInsensitive, range: nil)
+                    stationName = stationName.replacingOccurrences(of: "l'", with: "", options: NSString.CompareOptions.caseInsensitive, range: nil)
+                    let stationNameArray = stationName.components(separatedBy: NSCharacterSet.whitespaces)
                     if let queryForName = queryForNameArray(stationNameArray) {
                         for otherStopRow in try dbManager.database.prepare("SELECT stop_name, stop_id FROM stops WHERE location_type = 0" + queryForName) {
                             let parent = PARStop(name: otherStopRow[0] as! String, objectId: otherStopRow[1] as! String)
@@ -56,7 +56,7 @@ public class PARStationManager: NSObject, StationManager {
             for routeRow in try dbManager.database.prepare("SELECT route_id, route_short_name FROM routes") {
                 let route = PARRoute(objectId: routeRow[1] as! String)
                 route.color = PARRouteColorManager().colorForRouteId(routeRow[1] as! String)
-                if let oldRouteIndex = routes.indexOf({route == ($0 as! PARRoute)}) {
+                if let oldRouteIndex = routes.index(where: {route == ($0 as! PARRoute)}) {
                     let oldRoute = routes[oldRouteIndex] as! PARRoute
                     if !oldRoute.routeIds.contains(routeRow[0] as! String) {
                         oldRoute.routeIds.append(routeRow[0] as! String)
@@ -71,11 +71,11 @@ public class PARStationManager: NSObject, StationManager {
         }
     }
     
-    public func stationsForSearchString(stationName: String!) -> Array<Station>? {
-        return allStations.filter({$0.name!.lowercaseString.rangeOfString(stationName.lowercaseString) != nil})
+    open func stationsForSearchString(_ stationName: String!) -> Array<Station>? {
+        return allStations.filter({$0.name!.lowercased().range(of: stationName.lowercased()) != nil})
     }
     
-    public func predictions(station: Station!, time: NSDate!) -> Array<Prediction>{
+    public func predictions(_ station: Station!, time: Date!) -> Array<Prediction> {
         var predictions = Array<Prediction>()
         
         do {
@@ -85,7 +85,7 @@ public class PARStationManager: NSObject, StationManager {
                 stop.objectId as Binding
             })
             stopIds.append(dateToTime(time))
-            stopIds.append(dateToTime(time.increment(NSCalendarUnit.Minute, amount: Int(timeLimitForPredictions))))
+            stopIds.append(dateToTime((time as Date).increment(NSCalendar.Unit.minute, amount: Int(timeLimitForPredictions))))
             let stmt = try dbManager.database.prepare(timesQuery)
             for timeRow in stmt.bind(stopIds) {
                 let tripId = timeRow[0] as! String
@@ -95,12 +95,12 @@ public class PARStationManager: NSObject, StationManager {
                 for tripRow in try dbManager.database.prepare("SELECT direction_id, route_id FROM trips WHERE trip_id = ?", [tripId]) {
                     let direction = tripRow[0] as! Int64
                     let routeId = tripRow[1] as! String
-                    prediction.direction = direction == 0 ? .Uptown : .Downtown
+                    prediction.direction = direction == 0 ? Direction.uptown : Direction.downtown
                     let routeArray = routes.filter({($0 as! PARRoute).routeIds.contains(routeId)})
                     prediction.route = routeArray[0]
                 }
                 
-                if !predictions.contains({$0 == prediction}) {
+                if !predictions.contains(where: {$0 == prediction}) {
                     predictions.append(prediction)
                 }
             }
@@ -111,7 +111,7 @@ public class PARStationManager: NSObject, StationManager {
         return predictions
     }
     
-    public func routeIdsForStation(station: Station) -> Array<String> {
+    open func routeIdsForStation(_ station: Station) -> Array<String> {
         var routeNames = Array<String>()
         do {
             let stops = station.stops
@@ -138,30 +138,30 @@ public class PARStationManager: NSObject, StationManager {
         return routeNames
     }
     
-    func dateToTime(time: NSDate!) -> String{
-        let formatter: NSDateFormatter = NSDateFormatter()
+    func dateToTime(_ time: Date!) -> String{
+        let formatter: DateFormatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss"
-        return formatter.stringFromDate(time)
+        return formatter.string(from: time)
     }
     
-    func timeToDate(time: String!, referenceDate: NSDate!) -> NSDate?{
-        let dateFormatter = NSDateFormatter()
+    func timeToDate(_ time: String!, referenceDate: Date!) -> Date?{
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-DD "
-        let formatter: NSDateFormatter = NSDateFormatter()
+        let formatter: DateFormatter = DateFormatter()
         formatter.dateFormat = "YYYY-MM-DD HH:mm:ss"
-        let timeString = dateFormatter.stringFromDate(referenceDate) + time
-        return formatter.dateFromString(timeString)
+        let timeString = dateFormatter.string(from: referenceDate) + time
+        return formatter.date(from: timeString)
     }
     
-    func questionMarksForStopArray(array: Array<Stop>?) -> String?{
+    func questionMarksForStopArray(_ array: Array<Stop>?) -> String?{
         var qMarks: String = "?"
         if let stops = array {
             if stops.count > 1 {
                 for _ in stops {
                     qMarks = qMarks + ",?"
                 }
-                let index = qMarks.endIndex.advancedBy(-2)
-                qMarks = qMarks.substringToIndex(index)
+                let index = qMarks.characters.index(qMarks.endIndex, offsetBy: -2)
+                qMarks = qMarks.substring(to: index)
             }
         }else{
             return nil
@@ -169,7 +169,7 @@ public class PARStationManager: NSObject, StationManager {
         return qMarks
     }
     
-    func queryForNameArray(array: Array<String>?) -> String? {
+    func queryForNameArray(_ array: Array<String>?) -> String? {
         var query = ""
         if let nameArray = array {
             for nameComponent in nameArray {

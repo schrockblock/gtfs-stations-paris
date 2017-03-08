@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4959B2E21E6F8D5000D15898 /* GTFSStationsParis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4959B2E11E6F8D5000D15898 /* GTFSStationsParis.framework */; };
 		49A94E191D26A7A800D59F7C /* PARStationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A94E181D26A7A800D59F7C /* PARStationManager.swift */; };
 		49A94E1B1D26A7BE00D59F7C /* PARStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A94E1A1D26A7BE00D59F7C /* PARStation.swift */; };
 		49A94E1D1D26A7DE00D59F7C /* PARRouteColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A94E1C1D26A7DE00D59F7C /* PARRouteColorManager.swift */; };
@@ -39,6 +40,8 @@
 /* Begin PBXFileReference section */
 		1C30E95C034EAB1E27FA8056 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		3B8D595C0BE3C115B2EE3A82 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		4959B2DF1E6F8D2E00D15898 /* Pods_GTFSStationsParis_Example.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_GTFSStationsParis_Example.framework; path = "Pods/../build/Debug-iphoneos/Pods_GTFSStationsParis_Example.framework"; sourceTree = "<group>"; };
+		4959B2E11E6F8D5000D15898 /* GTFSStationsParis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GTFSStationsParis.framework; path = "Pods/../build/Debug-iphoneos/GTFSStationsParis/GTFSStationsParis.framework"; sourceTree = "<group>"; };
 		49A94E181D26A7A800D59F7C /* PARStationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PARStationManager.swift; path = ../../GTFSStationsParis/Classes/PARStationManager.swift; sourceTree = "<group>"; };
 		49A94E1A1D26A7BE00D59F7C /* PARStation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PARStation.swift; path = ../../GTFSStationsParis/Classes/PARStation.swift; sourceTree = "<group>"; };
 		49A94E1C1D26A7DE00D59F7C /* PARRouteColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PARRouteColorManager.swift; path = ../../GTFSStationsParis/Classes/PARRouteColorManager.swift; sourceTree = "<group>"; };
@@ -79,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4959B2E21E6F8D5000D15898 /* GTFSStationsParis.framework in Frameworks */,
 				81EC1303A658D84A4FBF2848 /* Pods_GTFSStationsParis_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -186,6 +190,8 @@
 		EF0955E0630750B52C00FAC7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4959B2E11E6F8D5000D15898 /* GTFSStationsParis.framework */,
+				4959B2DF1E6F8D2E00D15898 /* Pods_GTFSStationsParis_Example.framework */,
 				B42E386CA3E0B946000D328B /* Pods_GTFSStationsParis_Example.framework */,
 				961B765311513EC1310043DA /* Pods_GTFSStationsParis_Tests.framework */,
 			);
@@ -199,12 +205,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "GTFSStationsParis_Example" */;
 			buildPhases = (
-				D2FB798E48BFEDB2A9EA037D /* Check Pods Manifest.lock */,
+				D2FB798E48BFEDB2A9EA037D /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				C5873688DAF8CAE1ECE8AEB5 /* Embed Pods Frameworks */,
-				75CD47487DFA8D99522D8052 /* Copy Pods Resources */,
+				C5873688DAF8CAE1ECE8AEB5 /* [CP] Embed Pods Frameworks */,
+				75CD47487DFA8D99522D8052 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -219,12 +225,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "GTFSStationsParis_Tests" */;
 			buildPhases = (
-				0D06B2D395DCB46E2EC25388 /* Check Pods Manifest.lock */,
+				0D06B2D395DCB46E2EC25388 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				72BC35F661000EC231872113 /* Embed Pods Frameworks */,
-				AE32C95BF025D37B40FEB6EC /* Copy Pods Resources */,
+				72BC35F661000EC231872113 /* [CP] Embed Pods Frameworks */,
+				AE32C95BF025D37B40FEB6EC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -248,9 +254,11 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						LastSwiftMigration = 0820;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						LastSwiftMigration = 0820;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 				};
@@ -297,29 +305,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0D06B2D395DCB46E2EC25388 /* Check Pods Manifest.lock */ = {
+		0D06B2D395DCB46E2EC25388 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		72BC35F661000EC231872113 /* Embed Pods Frameworks */ = {
+		72BC35F661000EC231872113 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,14 +335,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GTFSStationsParis_Tests/Pods-GTFSStationsParis_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		75CD47487DFA8D99522D8052 /* Copy Pods Resources */ = {
+		75CD47487DFA8D99522D8052 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,14 +350,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GTFSStationsParis_Example/Pods-GTFSStationsParis_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AE32C95BF025D37B40FEB6EC /* Copy Pods Resources */ = {
+		AE32C95BF025D37B40FEB6EC /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -357,14 +365,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GTFSStationsParis_Tests/Pods-GTFSStationsParis_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C5873688DAF8CAE1ECE8AEB5 /* Embed Pods Frameworks */ = {
+		C5873688DAF8CAE1ECE8AEB5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -372,19 +380,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GTFSStationsParis_Example/Pods-GTFSStationsParis_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D2FB798E48BFEDB2A9EA037D /* Check Pods Manifest.lock */ = {
+		D2FB798E48BFEDB2A9EA037D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -538,6 +546,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -553,6 +562,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -564,6 +574,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/GTFSStationsParis",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -577,6 +589,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -588,6 +601,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/GTFSStationsParis",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -596,6 +611,7 @@
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

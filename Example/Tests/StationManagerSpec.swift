@@ -16,7 +16,7 @@ class StationManagerSpec: QuickSpec {
     override func spec() {
         describe("StationManager", { () -> Void in
             do {
-                let path = NSBundle(forClass: self.classForCoder).pathForResource("paris", ofType: "db")
+                let path = Bundle(for: self.classForCoder).path(forResource: "paris", ofType: "db")
                 let stationManager: PARStationManager! = try PARStationManager(sourceFilePath: path)
                 var allStations: Array<Station>?
                 
@@ -71,7 +71,7 @@ class StationManagerSpec: QuickSpec {
                         if let stations = allStations {
                             for station in stations {
                                 let date = NSDate(timeIntervalSince1970:1434217843)
-                                let stationPredictions: Array<Prediction>? = stationManager.predictions(station, time: date)
+                                let stationPredictions: Array<Prediction>? = stationManager.predictions(station, time: date as Date!)
                                 expect(stationPredictions).toNot(beNil())
                                 if let predictions = stationPredictions {
                                     expect(predictions.count > 0).to(beTruthy())
@@ -79,7 +79,7 @@ class StationManagerSpec: QuickSpec {
                                         let prediction: Prediction = predictions[0]
                                         expect(prediction.timeOfArrival).toNot(beNil())
                                         expect(prediction.secondsToArrival).toNot(beNil())
-                                        expect(prediction.timeOfArrival?.timeIntervalSinceDate(date) < 20 * 60).to(beTruthy())
+                                        expect((prediction.timeOfArrival as NSDate?)?.timeIntervalSince(date as Date)).to(beLessThan(20 * 60))
                                         expect(prediction.direction).toNot(beNil())
                                         expect(prediction.route).toNot(beNil())
                                         if let route = prediction.route {
