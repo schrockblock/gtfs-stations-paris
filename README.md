@@ -20,10 +20,6 @@ it, simply add the following line to your Podfile:
 pod "GTFSStationsParis"
 ```
 
-## Author
-
-Elliot, elliot.schrock@gmail.com
-
 ## License
 
 GTFSStationsParis is available under the MIT license. See the LICENSE file for more info.
