@@ -11,16 +11,16 @@ import SQLite
 import SubwayStations
 
 open class PARStationManager: NSObject, StationManager {
-    open var sourceFilePath: String?
-    lazy var dbManager: DBManager = {
+    @objc open var sourceFilePath: String?
+    @objc lazy var dbManager: DBManager = {
         let lazyManager = DBManager(sourcePath: self.sourceFilePath)
         return lazyManager
     }()
     open var allStations: Array<Station> = Array<Station>()
     open var routes: Array<Route> = Array<Route>()
-    open var timeLimitForPredictions: Int32 = 20
+    @objc open var timeLimitForPredictions: Int32 = 20
     
-    public init(sourceFilePath: String?) throws {
+    @objc public init(sourceFilePath: String?) throws {
         super.init()
         
         if let file = sourceFilePath {
@@ -138,13 +138,44 @@ open class PARStationManager: NSObject, StationManager {
         return routeNames
     }
     
-    func dateToTime(_ time: Date!) -> String{
+    public func stationsForRoute(_ route: Route) -> Array<Station>? {
+        var stations = Array<Station>()
+        do {
+            let sqlString = "SELECT stops.parent_station,stop_times.stop_sequence FROM stops " +
+                "INNER JOIN stop_times ON stop_times.stop_id = stops.stop_id " +
+                "INNER JOIN trips ON stop_times.trip_id = trips.trip_id " +
+                "WHERE trips.route_id = ? AND trips.direction_id = 0 AND stop_times.departure_time BETWEEN ? AND ? " +
+                "GROUP BY stops.parent_station " +
+            "ORDER BY stop_times.stop_sequence DESC "
+            for stopRow in try dbManager.database.prepare(sqlString, [route.objectId, "10:00:00", "15:00:00"]) {
+                let parentId = stopRow[0] as? String
+                for station in allStations {
+                    var foundOne = false
+                    for stop in station.stops {
+                        if stop.objectId == parentId {
+                            stations.append(station)
+                            foundOne = true
+                            break
+                        }
+                    }
+                    if foundOne {
+                        break
+                    }
+                }
+            }
+        }catch _ {
+            
+        }
+        return stations
+    }
+    
+    @objc func dateToTime(_ time: Date!) -> String{
         let formatter: DateFormatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss"
         return formatter.string(from: time)
     }
     
-    func timeToDate(_ time: String!, referenceDate: Date!) -> Date?{
+    @objc func timeToDate(_ time: String!, referenceDate: Date!) -> Date?{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-DD "
         let formatter: DateFormatter = DateFormatter()
@@ -169,7 +200,7 @@ open class PARStationManager: NSObject, StationManager {
         return qMarks
     }
     
-    func queryForNameArray(_ array: Array<String>?) -> String? {
+    @objc func queryForNameArray(_ array: Array<String>?) -> String? {
         var query = ""
         if let nameArray = array {
             for nameComponent in nameArray {

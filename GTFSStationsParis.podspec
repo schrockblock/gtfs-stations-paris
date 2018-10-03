@@ -27,7 +27,9 @@ This pod parses a sqlite db of gtfs data into station objects and peripheral mod
   s.source           = { :git => 'https://github.com/schrockblock/gtfs-stations-paris.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/schrockblock'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
+
+  s.swift_version = '4.1'
 
   s.source_files = 'GTFSStationsParis/Classes/**/*'
 
